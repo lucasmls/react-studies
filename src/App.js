@@ -6,7 +6,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="hello">Hello React</h1>
-        <Title name="Lucas" last_name="Lima" />
+        <Title name="Lucas" last_name={ [1, 2, 3, `lucas`, 10] } />
       </div>
     );
   }
