@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const Title = (props) => (
-  <h1>Hello { props.name }!</h1>
-)
+class Title extends Component {
+  render() { 
+    return (
+      <h1>Hello { `${this.props.name} ${this.props.last_name}` }</h1>
+    )
+  }
+}
+
+Title.defaultProps = {
+  name: 'Nome',
+  last_name: 'Sobrenome'
+}
 
 export default Title
