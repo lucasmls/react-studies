@@ -4,12 +4,8 @@ import Square from './Square'
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        {
-          ['red', 'pink', 'blue'].map((color, i) => (
-            <Square key={i} color={color} />
-          ))
-        }
+      <div className="container" onClick={e => alert(`click`)}>
+        <Square />
       </div>
     );
   }
