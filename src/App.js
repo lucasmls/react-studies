@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import LikeButton from './LikeButton'
-import SearchButton from './SearchButton'
 
 class App extends Component {
+  constructor () {
+    super()
+
+    this.state = {
+      name: 'Lucas'
+    }
+  }
+
   render() {
     return (
-      <div className="container">
-        <LikeButton />
-        <SearchButton />
+      <div className="container" onClick={() => this.setState({ name: Math.random(0, 1000) })}>
+        {this.state.name}.js
       </div>
     );
   }
