@@ -22,6 +22,11 @@ class Timer extends Component {
     clearInterval(this.timer)
   }
 
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps(nextProps) {
+    console.log('Timer.js WillReceiveProps', this.props, nextProps)
+  }
+
   render() {
     return (
       <div>
