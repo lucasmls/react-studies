@@ -16,4 +16,4 @@ Square.defaultProps = {
   color: 'blue'
 }
 
-export default Square;
+export default Square

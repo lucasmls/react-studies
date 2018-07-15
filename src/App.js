@@ -1,14 +1,16 @@
-import React, { Component } from 'react';
-import Square from './Square'
+import React, { Component } from 'react'
+import RButton from './RButton'
 
 class App extends Component {
   render() {
     return (
-      <div className="container" onClick={e => alert(`click`)}>
-        <Square />
+      <div className="container">
+        <RButton color="tomato">
+          <span>RButton</span>
+        </RButton>
       </div>
     );
   }
 }
 
-export default App;
+export default App
