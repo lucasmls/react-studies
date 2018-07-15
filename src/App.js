@@ -1,18 +1,25 @@
 import React, { Component } from 'react'
+import Square from './Square'
+import RButton from './RButton'
 
 class App extends Component {
   constructor () {
     super()
 
     this.state = {
-      name: 'Lucas'
+      color: 'red'
     }
   }
 
   render() {
     return (
-      <div className="container" onClick={() => this.setState({ name: Math.random(0, 1000) })}>
-        {this.state.name}.js
+      <div className="container">
+        <Square color={this.state.color}/>
+        {
+          ['red', 'green', 'blue'].map(color => (
+            <RButton handleClick={() => this.setState({ color })}>{ color }</RButton>
+          ))
+        }
       </div>
     );
   }
