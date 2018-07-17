@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
-import RButton from './RButton'
 
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      value: ''
+    }
+  }
+
   render() {
     return (
       <div className="container">
-        <RButton handleClick={() => alert('RButton')}>
-          RButton
-        </RButton>
+        <form action="">
+          <input type="text" value={this.state.value} onChange={e => {
+            console.log(e)
+            this.setState({ value: e.target.value })
+          }}/>
+        </form>
       </div>
     );
   }
