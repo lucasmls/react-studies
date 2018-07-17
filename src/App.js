@@ -7,7 +7,7 @@ class App extends Component {
     console.log('App.js constructor')
     this.state = {
       showTimer: true,
-      time: 10
+      time: 5
     }
   }
 
