@@ -28,8 +28,14 @@ class Timer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log('Timer.js ShouldComponentUpdate')
+    console.log('Timer.js ShouldComponentUpdate', nextProps, nextState)
+    //WARNING! O componente só irá renderizar caso a expressão abaixo retorne TRUE
     return this.props.time !== nextProps.time
+  }
+
+  //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
+  componentWillUpdate(nextProps, nextState) {
+    console.log('Timer.js ComponentWillUpdate', nextProps, nextState)
   }
 
   render() {
