@@ -4,29 +4,42 @@ class App extends Component {
   constructor () {
     super()
     this.state = {
-      value: '2',
-      textValue: ''
+      checked: false,
+      showContent: false,
+      checked2: false,
+      showContent2: false,
     }
   }
 
   render() {
     return (
       <div className="container">
-        <form onSubmit={e => { e.preventDefault(); console.log(this.state) }}
-              onChange={e => { console.log(e.target.name); } }>
-          <textarea name="conteudo"
-                    cols="30"
-                    rows="10"
-                    value={this.state.value}
-                    onChange={e => ( this.setState({ value: e.target.value }) )} />
-            
-            <input type="text"
-                  name="input"
-                  value={this.state.textValue}
-                  onChange={e => ( this.setState({ textValue: e.target.value }) )} />
+        <p>Demonstração de que o setState é assíncrono</p>
+        <label htmlFor="check">Mostrar/Esconder conteúdo</label>
+        <input id="check"
+               type="checkbox"
+               checked={this.state.checked}
+               onChange={e => {
+                  this.setState({ checked: !this.state.checked })
+                  this.setState({ showContent: this.state.checked })
+                }} />
 
-            <button type="submit">Submit</button>
-        </form>
+        {this.state.showContent && <p>Conteúdo sendo mostrado!</p>}
+
+        <hr/>
+
+        <p>Correção do setState assíncrono utilizando a função de callback do setState</p>
+        <label htmlFor="check2">Mostrar/Esconder conteúdo</label>
+        <input id="check2"
+               type="checkbox"
+               checked={this.state.checked2}
+               onChange={e => {
+                  this.setState({ checked2: !this.state.checked2 }, () => {
+                    this.setState({ showContent2: this.state.checked2 })
+                  })
+                }} />
+
+        {this.state.showContent2 && <p>Conteúdo corrigido sendo mostrado!</p>}
       </div>
     );
   }
