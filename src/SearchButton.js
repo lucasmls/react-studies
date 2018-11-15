@@ -10,5 +10,5 @@ const SearchButton = () => {
     </RButton>
   )
 }
- 
+
 export default SearchButton
