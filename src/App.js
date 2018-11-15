@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import LoadingHOC from './HOC/LoadingHOC'
 
 class App extends Component {
   constructor () {
@@ -16,9 +17,6 @@ class App extends Component {
     console.log('did mount')
     this.setState(this.incrementCounter)
     this.setState(this.incrementCounter)
-    this.setState(this.incrementCounter)
-    this.setState(state => ({ counter: state.counter +1 }))
-    this.setState(state => ({ counter: state.counter +1 }))
     this.setState(state => ({ counter: state.counter +1 }))
     this.setState(state => ({ counter: state.counter +1 }))
   }
@@ -33,4 +31,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default LoadingHOC(App)
