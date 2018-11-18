@@ -1,23 +1,26 @@
 import React, { PureComponent } from 'react'
 import Counter from './components/Counter/Counter'
 
+import { connect } from 'react-redux'
+
 class App extends PureComponent {
-  state = {
-    counter: 0
-  }
 
-  increment = () => this.setState({ counter: this.state.counter + 1  })
+  increment = () => this.props.dispatch({ type: 'INCREMENT' })
 
-  decrement = () => this.setState({ counter: this.state.counter - 1  })
+  decrement = () => this.props.dispatch({ type: 'DECREMENT' })
 
   render() {
     return (
       <Counter
-        counter={this.state.counter}
+        counter={this.props.counter}
         increment={this.increment}
         decrement={this.decrement} />
     )
   }
 }
 
-export default App
+const mapStateToProps = (state) => ({
+  counter: state
+})
+
+export default connect(mapStateToProps)(App)
