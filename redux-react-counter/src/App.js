@@ -1,11 +1,21 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
+import Counter from './components/Counter/Counter'
 
-class App extends Component {
+class App extends PureComponent {
+  state = {
+    counter: 0
+  }
+
+  increment = () => this.setState({ counter: this.state.counter + 1  })
+
+  decrement = () => this.setState({ counter: this.state.counter - 1  })
+
   render() {
     return (
-      <div className="App">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias, reiciendis.
-      </div>
+      <Counter
+        counter={this.state.counter}
+        increment={this.increment}
+        decrement={this.decrement} />
     )
   }
 }
