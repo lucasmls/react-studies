@@ -4,3 +4,8 @@ export const addTodo = (text) => ({
   id: nextTodoId++,
   text
 })
+
+export const toggleTodoStatus = id => ({
+  type: 'TOGGLE_TODO',
+  id
+})
