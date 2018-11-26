@@ -5,7 +5,7 @@ const AddTodo = () => {
     <div>
       <form action="">
         <input type="text"/>
-        <button>Adicionar</button>
+        <button type="submit">Adicionar</button>
       </form>
     </div>
   )
