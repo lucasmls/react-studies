@@ -1,11 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const TodoList = ({ todos }) => {
+import Todo from './Todo'
+import { toggleTodoStatus } from '../actions'
+
+const TodoList = ({ todos, dispatch }) => {
   return (
     <ul>
       {todos.map(todo => (
-        <li>{todo.text}</li>
+        <Todo
+          {...todo}
+          key={todo.id}
+          onClick={() => dispatch(toggleTodoStatus(todo.id))} />
       )) }
     </ul>
   )
