@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import AddTodo from './AddTodo'
 import TodoList from '../components/TodoList'
+import Footer from '../components/Footer'
 
 class App extends Component {
   render() {
@@ -9,6 +10,7 @@ class App extends Component {
       <Fragment>
         <AddTodo />
         <TodoList />
+        <Footer />
       </Fragment>
     );
   }
