@@ -1,9 +1,18 @@
-const counter = (state = 0, action) => {
+const counter = (state = [], action) => {
   switch (action.type) {
+    case 'ADD_COUNTER':
+      return [ ...state, 0 ]
+
     case 'INCREMENT':
-      return state +1
+      return state.map((counter, index) => (
+        index === action.index ? counter +1 : counter
+      ))
+
     case 'DECREMENT':
-      return state -1
+      return state.map((counter, index) => (
+        index === action.index ? counter -1 : counter
+      ))
+
     default:
       return state
   }
