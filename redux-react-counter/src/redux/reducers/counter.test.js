@@ -6,6 +6,20 @@ describe('Counter', () => {
     expect(counter).to.be.a('function')
   })
 
+  it('Should return the same state if the action is unknown', () => {
+    const before = [1, 2, 3]
+    const after = [1, 2, 3]
+    const action = { type: null }
+    expect(counter(before, action)).to.be.deep.equal(after)
+  })
+
+  it('Should return the initial state if the last state is undefined', () => {
+    const before = undefined
+    const after = []
+    const action = {}
+    expect(counter(before, action)).to.be.deep.equal(after)
+  })
+
   it('Should add a counter', () => {
     const before = []
     const after = [0]
