@@ -3,7 +3,7 @@ import Counter from './components/Counter/Counter'
 import AddCounter from './components/AddCounter/AddCounter'
 import { connect } from 'react-redux'
 
-const App = ({ counters, increment, decrement }) => (
+const App = ({ counters, increment, decrement, removeCounter }) => (
   <Fragment>
     <AddCounter />
     {counters.map((counter, index) => (
@@ -11,21 +11,21 @@ const App = ({ counters, increment, decrement }) => (
         key={index}
         counter={counter}
         increment={increment(index)}
-        decrement={decrement(index)} />
+        decrement={decrement(index)}
+        removeCounter={removeCounter(index)} />
     ))}
   </Fragment>
 )
 
-const mapStateToProps = (state) => ({
-  counters: state.counters
+const mapStateToProps = ({ counters }) => ({
+  counters
 })
 
-const mapDispatchToProps = (dispatch) => {
-  const response = {
-    increment: (index) => () => dispatch({ type: 'INCREMENT', index }),
-    decrement: (index) => () => dispatch({ type: 'DECREMENT', index })
+const mapDispatchToProps = (dispatch) => ({
+    increment: index => () => dispatch({ type: 'INCREMENT', index }),
+    decrement: index => () => dispatch({ type: 'DECREMENT', index }),
+    removeCounter: index => () => dispatch({ type: 'REMOVE_COUNTER', index }),
   }
-  return response
-}
+)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
