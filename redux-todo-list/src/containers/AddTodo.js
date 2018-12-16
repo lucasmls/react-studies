@@ -2,24 +2,26 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { addTodo } from '../actions'
 
-let todoInput
-const handleSubmit = (event, dispatch) => {
-  event.preventDefault()
-  if (!todoInput.value.trim())
-    return
-  dispatch(addTodo(todoInput.value))
-  todoInput.value = ''
-}
-
-const AddTodo = ({ dispatch }) => {
+const AddTodo = ({ handleSubmit }) => {
   return (
     <div>
-      <form onSubmit={(e) => handleSubmit(e, dispatch)}>
-        <input type="text" ref={node => todoInput = node } />
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="todoInput"/>
         <button type="submit">Adicionar</button>
       </form>
     </div>
   )
 }
 
-export default connect()(AddTodo);
+const mapDispatchToProps = (dispatch) => ({
+  handleSubmit: (event) => {
+    event.preventDefault()
+    const todoText = event.target.todoInput.value
+    if (!todoText.trim())
+      return
+    dispatch(addTodo(todoText))
+    event.target.todoInput.value = ''
+  }
+}) 
+
+export default connect(null, mapDispatchToProps)(AddTodo);
