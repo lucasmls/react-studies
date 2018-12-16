@@ -3,6 +3,8 @@ import Counter from './components/Counter/Counter'
 import AddCounter from './components/AddCounter/AddCounter'
 import { connect } from 'react-redux'
 
+import { removeCounter, increment, decrement } from './redux/action-creators/counter'
+
 const App = ({ counters, increment, decrement, removeCounter }) => (
   <Fragment>
     <AddCounter />
@@ -22,9 +24,9 @@ const mapStateToProps = ({ counters }) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    increment: index => () => dispatch({ type: 'INCREMENT', index }),
-    decrement: index => () => dispatch({ type: 'DECREMENT', index }),
-    removeCounter: index => () => dispatch({ type: 'REMOVE_COUNTER', index }),
+    increment: index => () => dispatch(increment(index)),
+    decrement: index => () => dispatch(decrement(index)),
+    removeCounter: index => () => dispatch(removeCounter(index)),
   }
 )
 

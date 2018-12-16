@@ -1,5 +1,6 @@
 import { expect } from 'chai'
-import counter, { ADD_COUNTER, REMOVE_COUNTER, INCREMENT, DECREMENT, initialState } from './counter'
+import counter, { initialState } from './counter'
+import { ADD_COUNTER, REMOVE_COUNTER, INCREMENT, DECREMENT } from '../actions/counter'
 
 describe('Counter', () => {
   it('Counter should be a function', () => {
