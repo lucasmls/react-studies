@@ -1,8 +1,11 @@
 import React from 'react'
 
+// Styles
+import { Title } from './styles'
+
 const VideoTitle = () => {
   return (
-    <h6>Video Title!</h6>
+    <Title>Video Title!</Title>
   )
 }
 

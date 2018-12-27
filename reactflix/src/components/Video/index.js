@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 
 // Components
 import VideoThumb from '../VideoThumb'
@@ -9,12 +9,10 @@ import { VideoCard } from './styles';
 
 const Video = () => {
   return (
-    <Fragment>
-      <VideoCard className="video">
-        <VideoThumb />
-        <VideoTitle />
-      </VideoCard>
-    </Fragment>
+    <VideoCard className="video">
+      <VideoThumb />
+      <VideoTitle />
+    </VideoCard>
   );
 }
 

@@ -10,5 +10,9 @@ export const Thumb = styled.div`
   background-color: #F3F7FC;
   box-shadow: 0px 5px 20px #00000021;
   border-radius: 3px;
+  transition: .5s;
 
+  &:hover {
+    border: 1px solid #999;
+  }
 `
