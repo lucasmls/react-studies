@@ -11,8 +11,21 @@ import { Provider } from 'react-redux'
 // Lib
 import 'milligram'
 
+const initialState = {
+  address: {
+    code: '123.312.123-32',
+    status: 1,
+    state: 'Minas Gerais!',
+    city: 'Belo Horizonte!',
+    district: 'Savassi!',
+    address: 'Pium-i',
+    isFetching: false
+  }
+}
+
 const store = createStore(
   rootReducer,
+  initialState,
   compose(
     applyMiddleware(
       thunkMiddleware,
