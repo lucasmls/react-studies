@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AddressTable = () => {
+const AddressTable = ({ status, code, state, city, district, address }) => {
   return (
     <div>
         <table>
@@ -16,11 +16,11 @@ const AddressTable = () => {
 
           <tbody>
             <tr>
-              <td>CEP!</td>
-              <td>ESTADO!</td>
-              <td>CIDADE!</td>
-              <td>BAIRRO</td>
-              <td>RUA!</td>
+              <td>{ code }</td>
+              <td>{ state }</td>
+              <td>{ city }</td>
+              <td>{ district }</td>
+              <td>{ address }</td>
             </tr>
           </tbody>
         </table>

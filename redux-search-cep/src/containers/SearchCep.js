@@ -9,7 +9,7 @@ import AddressTable from '../components/AddressTable'
 import { connect } from 'react-redux'
 import { fetchAddress } from '../redux/actions/address/address'
 
-const SearchCep = ({ handleSubmit }) => {
+const SearchCep = ({ handleSubmit, address }) => {
   return (
     <div className="container">
       <div className="row">
@@ -23,7 +23,7 @@ const SearchCep = ({ handleSubmit }) => {
         </div>
 
         <div className="column column-60">
-          <AddressTable />
+          <AddressTable { ...address } />
         </div>
 
       </div>
@@ -32,6 +32,7 @@ const SearchCep = ({ handleSubmit }) => {
 }
 
 const mapStateToProps = state => ({
+  address: state.address
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
