@@ -11,10 +11,10 @@ import 'milligram'
 import 'normalize.css'
 
 // Components
-import App from './containers/App';
+import Reactflix from './containers/Reactflix';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Reactflix />
   </Provider>, document.getElementById('root'))
 
