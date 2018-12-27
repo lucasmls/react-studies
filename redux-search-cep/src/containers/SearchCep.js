@@ -19,7 +19,7 @@ const SearchCep = ({ handleSubmit, address }) => {
       <div className="row">
 
         <div className="column column-40">
-          <SearchForm handleSubmit={handleSubmit} />
+          <SearchForm handleSubmit={handleSubmit} isFetching={address.isFetching} />
         </div>
 
         <div className="column column-60">
