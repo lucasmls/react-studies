@@ -3,6 +3,8 @@ import React from 'react'
 const AddressTable = ({ status, code, state, city, district, address }) => {
   return (
     <div>
+      {status === 0 && <p>Não foi encontrado endereço com este CEP.</p>}
+      {status === 1 && (
         <table>
           <thead>
             <tr>
@@ -24,6 +26,7 @@ const AddressTable = ({ status, code, state, city, district, address }) => {
             </tr>
           </tbody>
         </table>
+      )}
     </div>
   )
 }
