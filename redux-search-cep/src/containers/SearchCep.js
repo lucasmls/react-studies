@@ -5,7 +5,11 @@ import React from 'react'
 import SearchForm from '../components/SearchForm'
 import AddressTable from '../components/AddressTable'
 
-const SearchCep = () => {
+// Redux
+import { connect } from 'react-redux'
+import { fetchAddress } from '../redux/actions/address/address'
+
+const SearchCep = ({ handleSubmit }) => {
   return (
     <div className="container">
       <div className="row">
@@ -15,7 +19,7 @@ const SearchCep = () => {
       <div className="row">
 
         <div className="column column-40">
-          <SearchForm />
+          <SearchForm handleSubmit={handleSubmit} />
         </div>
 
         <div className="column column-60">
@@ -27,4 +31,18 @@ const SearchCep = () => {
   );
 }
 
-export default SearchCep;
+const mapStateToProps = state => ({
+})
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  handleSubmit: (e) => {
+    e.preventDefault()
+    const CEP = e.target.cep.value
+    dispatch(fetchAddress(CEP))
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchCep)
