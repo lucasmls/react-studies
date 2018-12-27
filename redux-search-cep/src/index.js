@@ -23,12 +23,25 @@ const initialState = {
   }
 }
 
+const myLoggerMiddleware = ({ getState, dispatch }) => next => action => {
+  console.group(`LOG: ${action.type}`)
+  console.log(`LOG: Will dispatch`, action)
+  console.log(`Previous state:`, getState())
+
+  const nextAction = next(action)
+
+  console.log(`Next state:`, getState())
+  console.groupEnd(`LOG: ${action.type}`)
+  return nextAction
+}
+
 const store = createStore(
   rootReducer,
   initialState,
   compose(
     applyMiddleware(
       thunkMiddleware,
+      myLoggerMiddleware
     ),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   )
