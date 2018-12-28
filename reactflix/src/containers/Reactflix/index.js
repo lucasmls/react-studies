@@ -4,14 +4,16 @@ import React from 'react';
 import { App } from './styles'
 
 // Components
+import Header from '../../components/Header'
+import RegisterVideo from '../../components/RegisterVideo'
 import VideoSingle from '../../components/VideoSingle'
 import VideosList from '../../components/VideosList'
-import Header from '../../components/Header'
 
 const Reactflix = () => {
   return (
     <App>
       <Header />
+      <RegisterVideo />
       <VideoSingle />
       <VideosList />
     </App>
