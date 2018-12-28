@@ -1,5 +1,9 @@
 import React from 'react';
 
+// Redux
+import { connect } from 'react-redux'
+import { createVideo } from '../../redux/actions/videos'
+
 // Styles
 import { App } from './styles'
 
@@ -9,15 +13,26 @@ import RegisterVideo from '../../components/RegisterVideo'
 import VideoSingle from '../../components/VideoSingle'
 import VideosList from '../../components/VideosList'
 
-const Reactflix = () => {
+const Reactflix = ({ handleSubmit }) => {
   return (
     <App>
       <Header />
-      <RegisterVideo />
+      <RegisterVideo handleSubmit={handleSubmit} />
       <VideoSingle />
       <VideosList />
     </App>
   );
 }
 
-export default Reactflix;
+const mapDispatchToProps = dispatch => ({
+  handleSubmit: e => {
+    e.preventDefault()
+    const payload = {
+      id: e.target.id.value,
+      title: e.target.title.value
+    }
+    dispatch(createVideo(payload))
+  }
+})
+
+export default connect(null, mapDispatchToProps)(Reactflix);
