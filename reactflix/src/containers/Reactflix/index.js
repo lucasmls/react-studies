@@ -4,6 +4,7 @@ import React from 'react';
 import { App } from './styles'
 
 // Components
+import VideoSingle from '../../components/VideoSingle'
 import VideosList from '../../components/VideosList'
 import Header from '../../components/Header'
 
@@ -11,6 +12,7 @@ const Reactflix = () => {
   return (
     <App>
       <Header />
+      <VideoSingle />
       <VideosList />
     </App>
   );
