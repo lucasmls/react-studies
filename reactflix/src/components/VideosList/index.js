@@ -4,13 +4,13 @@ import React from 'react'
 import Video from '../Video'
 
 // Styles
-import { ListContainer, SelectedFilter } from './styles'
+import { ListContainer } from './styles'
 
 const VideosList = () => {
   return (
     <ListContainer>
-      {Array.from({ length: 14 }).map(video => (
-        <Video />
+      {Array.from({ length: 14 }).map((video, index) => (
+        <Video key={index} />
       ))}
     </ListContainer>
   );
