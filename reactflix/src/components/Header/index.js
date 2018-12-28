@@ -1,12 +1,13 @@
 import React from 'react'
 
 // Styles
-import { HeaderBar } from './styles'
+import { HeaderBar, RegisterButton } from './styles'
 
 const Header = () => {
   return (
     <HeaderBar>
       <h6>Reactflix</h6>
+      <RegisterButton>Cadastrar Vídeo</RegisterButton>
     </HeaderBar>
   );
 }

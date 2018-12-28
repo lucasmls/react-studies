@@ -4,9 +4,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { registerVideo } from '../../redux/actions/videos'
 
+// Styles
+import { RegisterForm, CloseRegisterButton } from './styles'
+
 const RegisterVideo = ({ handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit}>
+    <RegisterForm onSubmit={handleSubmit}>
+      <h2>Cadastrar Vídeo</h2>
       <label htmlFor="id">ID do Vídeo:</label>
       <input type="text" id="id" name="id" />
 
@@ -14,7 +18,9 @@ const RegisterVideo = ({ handleSubmit }) => {
       <input type="text" id="title" name="title" />
 
       <button className="button-primary" type="submit" style={{ marginTop: '10px' }}>Cadastrar</button>
-    </form>
+
+      <CloseRegisterButton type="button">&times;</CloseRegisterButton>
+    </RegisterForm>
   )
 }
 
