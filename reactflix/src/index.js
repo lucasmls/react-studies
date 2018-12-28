@@ -20,15 +20,13 @@ videos.on('value',
   error => console.log(error)
 )
 
-const newVideo = videos.push()
-newVideo.set({
-  id: 2,
-  title: 'Vindo do app 01'
+const specificVideo = videos.child('-LUmVt-z8oOq-qkT6irX')
+console.log(specificVideo)
+specificVideo.update({
+  title: 'Update'
 })
-
 
 ReactDOM.render(
   <Provider store={store}>
     <Reactflix />
   </Provider>, document.getElementById('root'))
-
