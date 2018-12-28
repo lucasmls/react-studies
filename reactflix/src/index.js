@@ -20,6 +20,12 @@ videos.on('value',
   error => console.log(error)
 )
 
+const newVideo = videos.push()
+newVideo.set({
+  id: 2,
+  title: 'Vindo do app 01'
+})
+
 
 ReactDOM.render(
   <Provider store={store}>
