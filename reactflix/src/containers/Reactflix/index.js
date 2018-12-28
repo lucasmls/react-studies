@@ -2,7 +2,7 @@ import React from 'react';
 
 // Redux
 import { connect } from 'react-redux'
-import { createVideo } from '../../redux/actions/videos'
+import { registerVideo } from '../../redux/actions/videos'
 
 // Styles
 import { App } from './styles'
@@ -27,11 +27,8 @@ const Reactflix = ({ handleSubmit }) => {
 const mapDispatchToProps = dispatch => ({
   handleSubmit: e => {
     e.preventDefault()
-    const payload = {
-      id: e.target.id.value,
-      title: e.target.title.value
-    }
-    dispatch(createVideo(payload))
+    const payload = { id: e.target.id.value, title: e.target.title.value }
+    dispatch(registerVideo(payload))
   }
 })
 
