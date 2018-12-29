@@ -4,20 +4,18 @@ import React from 'react'
 import Play from '../Play'
 
 // Styles
-import { VideoCard, VideoThumb, VideoTitle } from './styles';
+import { VideoCard, VideoThumb, VideoTitle, VideoLink } from './styles';
 
-const Video = ({ title }) => {
+const Video = ({ title, onVideoClick }) => {
   return (
     <VideoCard className="video">
+      <VideoLink href="#" onClick={onVideoClick}>
+        <VideoThumb className="thumb">
+          <Play />
+        </VideoThumb>
 
-      <VideoThumb className="thumb">
-        <Play />
-      </VideoThumb>
-
-      <VideoTitle>
-        { title }
-      </VideoTitle>
-
+        <VideoTitle>{ title }</VideoTitle>
+      </VideoLink>
     </VideoCard>
   );
 }

@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import { PlayStyled } from '../Play/styles'
 
+export const VideoLink = styled.a`
+  color: inherit;
+`
+
 export const VideoCard = styled.div`
   cursor: pointer;
 
