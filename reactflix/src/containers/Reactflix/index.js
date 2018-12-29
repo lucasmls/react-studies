@@ -16,18 +16,17 @@ import VideosList from '../../components/VideosList'
 class Reactflix extends PureComponent {
 
   componentDidMount = () => {
-    console.log('Component Did Mount')
     this.props.fetchVideos()
   }
 
   render () {
-    const { isRegisterOpened } = this.props
+    const { isRegisterOpened, selectedVideo, selectedVideoTitle } = this.props
 
     return (
       <App>
         <Header />
-        {isRegisterOpened && <RegisterVideo />}
-        <VideoSingle />
+        { isRegisterOpened && <RegisterVideo /> }
+        { selectedVideo && <VideoSingle selectedVideo={selectedVideo} selectedVideoTitle={selectedVideoTitle} /> }
         <VideosList />
       </App>
     );
@@ -36,6 +35,8 @@ class Reactflix extends PureComponent {
 
 const mapStateToProps = state => ({
   isRegisterOpened: state.ui.isRegisterOpened,
+  selectedVideo: state.selectedVideo,
+  selectedVideoTitle: state.selectedVideo && state.videos[state.selectedVideo].title
 })
 
 const mapDispatchToProps = dispatch => ({
