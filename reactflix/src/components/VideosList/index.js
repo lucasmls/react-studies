@@ -1,19 +1,26 @@
 import React from 'react'
 
+// Redux
+import { connect } from 'react-redux'
+
 // Components
 import Video from '../Video'
 
 // Styles
 import { ListContainer } from './styles'
 
-const VideosList = () => {
+const VideosList = ({ videos }) => {
   return (
     <ListContainer>
-      {Array.from({ length: 14 }).map((video, index) => (
-        <Video key={index} />
+      {Object.keys(videos).map(key => (
+        <Video key={key} title={videos[key].title} />
       ))}
     </ListContainer>
   );
 }
 
-export default VideosList;
+const mapStateToProps = state => ({
+  videos: state.videos
+})
+
+export default connect(mapStateToProps)(VideosList)

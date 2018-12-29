@@ -6,7 +6,7 @@ import Play from '../Play'
 // Styles
 import { VideoCard, VideoThumb, VideoTitle } from './styles';
 
-const Video = () => {
+const Video = ({ title }) => {
   return (
     <VideoCard className="video">
 
@@ -15,7 +15,7 @@ const Video = () => {
       </VideoThumb>
 
       <VideoTitle>
-        lalal titleee
+        { title }
       </VideoTitle>
 
     </VideoCard>
