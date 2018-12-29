@@ -13,7 +13,6 @@ export const createVideo = payload => ({
 
 export const fetchVideos = () => async dispatch => {
   database.ref('videos').on('value', videos => {
-    console.log(videos.val())
     videos.forEach(video => { dispatch(createVideo(video.val())) })
   })
 }
