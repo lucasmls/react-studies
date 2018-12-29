@@ -34,6 +34,7 @@ const mapDispatchToProps = dispatch => ({
     e.target.reset()
     e.target[0].focus()
   },
+
   handleCloseRegister: () => dispatch(closeRegisterForm())
 })
 
