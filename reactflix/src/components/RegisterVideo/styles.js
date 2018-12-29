@@ -16,5 +16,4 @@ export const CloseRegisterButton = styled.button`
   font-weight: bold;
   width: 30px;
   height: 30px;
-
 `

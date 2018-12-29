@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Redux
+import { connect } from 'react-redux'
+
 // Styles
 import { App } from './styles'
 
@@ -9,16 +12,19 @@ import RegisterVideo from '../../components/RegisterVideo'
 import VideoSingle from '../../components/VideoSingle'
 import VideosList from '../../components/VideosList'
 
-const Reactflix = () => {
+const Reactflix = ({ isRegisterOpened }) => {
   return (
     <App>
       <Header />
-      <RegisterVideo />
+      {isRegisterOpened && <RegisterVideo />}
       <VideoSingle />
       <VideosList />
     </App>
   );
 }
 
+const mapStateToProps = state => ({
+  isRegisterOpened: state.ui.isRegisterOpened,
+})
 
-export default Reactflix;
+export default connect(mapStateToProps)(Reactflix);

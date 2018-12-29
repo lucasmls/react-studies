@@ -3,11 +3,12 @@ import React from 'react'
 // Redux
 import { connect } from 'react-redux'
 import { registerVideo } from '../../redux/actions/videos'
+import { closeRegisterForm } from '../../redux/actions/ui'
 
 // Styles
 import { RegisterForm, CloseRegisterButton } from './styles'
 
-const RegisterVideo = ({ handleSubmit }) => {
+const RegisterVideo = ({ handleSubmit, handleCloseRegister }) => {
   return (
     <RegisterForm onSubmit={handleSubmit}>
       <h2>Cadastrar Vídeo</h2>
@@ -19,7 +20,7 @@ const RegisterVideo = ({ handleSubmit }) => {
 
       <button className="button-primary" type="submit" style={{ marginTop: '10px' }}>Cadastrar</button>
 
-      <CloseRegisterButton type="button">&times;</CloseRegisterButton>
+      <CloseRegisterButton type="button" onClick={handleCloseRegister}>&times;</CloseRegisterButton>
     </RegisterForm>
   )
 }
@@ -32,7 +33,8 @@ const mapDispatchToProps = dispatch => ({
     await dispatch(registerVideo(payload))
     e.target.reset()
     e.target[0].focus()
-  }
+  },
+  handleCloseRegister: () => dispatch(closeRegisterForm())
 })
 
 export default connect(null, mapDispatchToProps)(RegisterVideo)
