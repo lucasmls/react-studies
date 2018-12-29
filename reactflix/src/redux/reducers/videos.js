@@ -1,4 +1,4 @@
-import { ADD_VIDEO } from '../../actions/types'
+import { ADD_VIDEO } from '../actions/types'
 
 const videos = (state = {}, action) => {
   switch (action.type) {

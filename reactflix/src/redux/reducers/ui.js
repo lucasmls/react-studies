@@ -1,4 +1,4 @@
-import { OPEN_REGISTER, CLOSE_REGISTER } from '../../actions/types'
+import { OPEN_REGISTER, CLOSE_REGISTER } from '../actions/types'
 
 const initialState = {
   isRegisterOpened: false
