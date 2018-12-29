@@ -1,17 +1,23 @@
 import React from 'react'
 
 // Components
-import VideoThumb from '../VideoThumb'
-import VideoTitle from '../VideoTitle'
+import Play from '../Play'
 
 // Styles
-import { VideoCard } from './styles';
+import { VideoCard, VideoThumb, VideoTitle } from './styles';
 
 const Video = () => {
   return (
     <VideoCard className="video">
-      <VideoThumb />
-      <VideoTitle />
+
+      <VideoThumb className="thumb">
+        <Play />
+      </VideoThumb>
+
+      <VideoTitle>
+        lalal titleee
+      </VideoTitle>
+
     </VideoCard>
   );
 }
