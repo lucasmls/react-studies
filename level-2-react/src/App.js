@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Toggle from "./Utilities/Toggle";
+import Portal from "./Utilities/Portal";
 
 class App extends Component {
   render() {
@@ -15,6 +16,13 @@ class App extends Component {
               </Fragment>
             )}
           </Toggle>
+
+          <Portal>
+            Hey! I'm a portal
+            <span role="img" aria-label="Smiling emoji">
+              😛
+            </span>
+          </Portal>
         </div>
       </div>
     );
