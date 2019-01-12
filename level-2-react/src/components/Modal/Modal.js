@@ -7,13 +7,15 @@ import {
   ModalBackground
 } from "./styles";
 
+import Icon from "../../Utilities/Icon";
+
 const Modal = ({ children, on, toggle }) => (
   <Portal>
     {on && (
       <ModalWrapper className="modal-wrapper">
         <ModalCard className="modal-card">
           <CloseButton className="close-button" onClick={toggle}>
-            &times;
+            <Icon name="close" />
           </CloseButton>
           <div className="content">{children}</div>
         </ModalCard>
