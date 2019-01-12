@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
+
 import Toggle from "./Utilities/Toggle";
 import Portal from "./Utilities/Portal";
+
+import Modal from "./components/Modal/Modal";
 
 class App extends Component {
   render() {
@@ -23,6 +26,17 @@ class App extends Component {
               😛
             </span>
           </Portal>
+
+          <Toggle>
+            {({ on, toggle }) => (
+              <div>
+                <button onClick={toggle}>Show Modal</button>
+                <Modal on={on} toggle={toggle}>
+                  <p>Modal Content!</p>
+                </Modal>
+              </div>
+            )}
+          </Toggle>
         </div>
       </div>
     );
