@@ -1,15 +1,17 @@
 import React, { Component, Fragment } from "react";
 
 import Toggle from "./Utilities/Toggle";
-import Portal from "./Utilities/Portal";
 
 import Modal from "./components/Modal/Modal";
+import User from "./components/User/User";
+
+import UserProvider from "./Providers/UserProvider";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">React Level 2!</header>
+      <UserProvider>
+        <header>React Level 2!</header>
         <div className="container">
           <Toggle>
             {({ on, toggle }) => (
@@ -19,13 +21,6 @@ class App extends Component {
               </Fragment>
             )}
           </Toggle>
-
-          <Portal>
-            Hey! I'm a portal
-            <span role="img" aria-label="Smiling emoji">
-              😛
-            </span>
-          </Portal>
 
           <Toggle>
             {({ on, toggle }) => (
@@ -37,8 +32,10 @@ class App extends Component {
               </div>
             )}
           </Toggle>
+
+          <User />
         </div>
-      </div>
+      </UserProvider>
     );
   }
 }
