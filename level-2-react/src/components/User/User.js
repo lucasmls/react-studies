@@ -9,6 +9,8 @@ const User = () => (
         <p>{context.user.id}</p>
         <p>{context.user.name}</p>
         <p>{context.user.email}</p>
+
+        <button onClick={context.logout}>Logout</button>
       </div>
     )}
   </UserContext.Consumer>
