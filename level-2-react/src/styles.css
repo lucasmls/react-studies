@@ -22,3 +22,9 @@ body {
   margin: 0 auto;
   padding: 20px 0;
 }
+
+section {
+  border-left: 1px solid #83a4d8;
+  padding: 20px;
+  margin-bottom: 20px;
+}
