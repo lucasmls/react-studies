@@ -37,20 +37,32 @@ class App extends Component {
                   <button onClick={toggle}>Toggle</button>
                   <Transition
                     items={on}
-                    from={{ opacity: 0 }}
-                    enter={{ opacity: 1 }}
-                    leave={{ opacity: 0 }}
+                    from={{ opacity: 0, bg: "#82d8d8", height: "0px" }}
+                    enter={{ opacity: 1, bg: "#524763", height: "100px" }}
+                    leave={{ opacity: 0, bg: "#82d8d8", height: "0px" }}
                   >
                     {item =>
                       item &&
-                      (props => (
-                        <div style={props}>
-                          <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. At a mollitia quis officia minima! Quidem in
-                            praesentium veritatis harum! Necessitatibus.
-                          </p>
-                        </div>
+                      (styles => (
+                        <Fragment>
+                          <Card
+                            style={{
+                              opacity: styles.opacity,
+                              padding: "10px",
+                              background: styles.bg,
+                              height: styles.height,
+                              overflow: "hidden"
+                            }}
+                          >
+                            <p>
+                              Lorem, ipsum dolor sit amet consectetur
+                              adipisicing elit. At a mollitia quis officia
+                              minima! Quidem in praesentium veritatis harum!
+                              Necessitatibus.
+                              <h3>{styles.bg}</h3>
+                            </p>
+                          </Card>
+                        </Fragment>
                       ))
                     }
                   </Transition>
