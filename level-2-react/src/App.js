@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Transition, Spring } from "react-spring";
+import { Transition } from "react-spring";
 
 import Toggle from "./Utilities/Toggle";
 
@@ -59,7 +59,7 @@ class App extends Component {
                               adipisicing elit. At a mollitia quis officia
                               minima! Quidem in praesentium veritatis harum!
                               Necessitatibus.
-                              <h3>{styles.bg}</h3>
+                              <b style={{ display: "block" }}>{styles.bg}</b>
                             </p>
                           </Card>
                         </Fragment>
