@@ -5,22 +5,21 @@ import { Spring, animated, interpolate } from "react-spring";
 
 class Drag extends Component {
   render() {
-    const x = 0;
-    const y = 1;
-
     return (
       <Gesture>
         {({ down, delta }) => (
           <Spring
+            native
             to={{
-              x: down ? delta[x] : 0
+              x: down ? delta[0] : 0
             }}
             immediate={name => down && name === "x"}
           >
-            {props => (
+            {({ x }) => (
               <Card
+                as={animated.div}
                 style={{
-                  transform: `translateX(${props.x}px)`
+                  transform: x.interpolate(x => `translateX(${x}px)`)
                 }}
               >
                 <h1>Drag me {down}</h1>
