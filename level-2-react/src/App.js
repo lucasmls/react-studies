@@ -5,6 +5,7 @@ import Toggle from "./Utilities/Toggle";
 
 import Modal from "./components/Modal/Modal";
 import User from "./components/User/User";
+import Drag from "./components/Drag";
 
 import UserProvider from "./Providers/UserProvider";
 
@@ -17,6 +18,10 @@ class App extends Component {
         <header>React Level 2!</header>
 
         <div className="container">
+          <section>
+            <Drag />
+          </section>
+
           <section>
             <h2>Toggle with render props</h2>
             <Toggle>
