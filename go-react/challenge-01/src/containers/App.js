@@ -1,5 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
+
+import Header from '../components/Header'
+import Post from '../components/Post'
 
 class App extends Component {
   static defaultProps = {
@@ -11,7 +14,14 @@ class App extends Component {
   }
 
   render () {
-    return <h1>App {this.props.appName}!</h1>
+    return (
+      <Fragment>
+        <Header />
+        <div className="container">
+          <Post />
+        </div>
+      </Fragment>
+    )
   }
 }
 
