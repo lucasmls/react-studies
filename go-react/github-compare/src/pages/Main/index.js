@@ -18,6 +18,12 @@ class Main extends Component {
     repositoryError: false
   }
 
+  saveRepository = repository => {
+    const repositories = JSON.parse(localStorage.getItem('repositories'))
+    const updatedRepositories = [...repositories, repository]
+    localStorage.setItem('repositories', JSON.stringify(updatedRepositories))
+  }
+
   handleAddRepository = async e => {
     e.preventDefault()
     this.setState({ isLoading: true })
@@ -28,16 +34,24 @@ class Main extends Component {
 
       repository.lastCommit = moment(repository.pushed_at).fromNow()
       this.inputRef.current.value = ''
-
       this.setState({
         repositories: [...this.state.repositories, repository],
         repositoryError: false
       })
+
+      this.saveRepository(repository)
     } catch (error) {
       this.setState({ repositoryError: true })
     } finally {
       this.setState({ isLoading: false })
     }
+  }
+
+  componentDidMount = () => {
+    const storageRepos = JSON.parse(localStorage.getItem('repositories'))
+    storageRepos
+      ? this.setState({ repositories: [...storageRepos] })
+      : localStorage.setItem('repositories', JSON.stringify([]))
   }
 
   render () {
