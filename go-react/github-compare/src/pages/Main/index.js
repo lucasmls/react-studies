@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 
 import CompareList from '../../components/CompareList'
 import { Container, Form } from './styles'
@@ -20,10 +21,13 @@ class Main extends Component {
     const userAndRepo = e.target.repository.value
 
     try {
-      const result = await api.get(`/repos/${userAndRepo}`)
+      const { data: repository } = await api.get(`/repos/${userAndRepo}`)
+
+      repository.lastCommit = moment(repository.pushed_at).fromNow()
       this.inputRef.current.value = ''
+
       this.setState({
-        repositories: [...this.state.repositories, result.data]
+        repositories: [...this.state.repositories, repository]
       })
     } catch (error) {
       console.log('Erro', error)
