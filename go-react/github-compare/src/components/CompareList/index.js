@@ -6,7 +6,7 @@ import { ListContainer, Repository } from './style'
 const CompareList = ({ repositories }) => (
   <ListContainer>
     {repositories.map(repository => (
-      <Repository>
+      <Repository key={repository.id}>
         <header>
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <strong>{repository.name}</strong>
@@ -33,7 +33,20 @@ const CompareList = ({ repositories }) => (
 )
 
 CompareList.propTypes = {
-  repositories: PropTypes.array.isRequired
+  repositories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      owner: PropTypes.shape({
+        login: PropTypes.string,
+        avatar_url: PropTypes.string
+      }),
+      stargazers_count: PropTypes.number,
+      forks_count: PropTypes.number,
+      open_issues_count: PropTypes.number,
+      pushed_at: PropTypes.string
+    })
+  ).isRequired
 }
 
 export default CompareList
