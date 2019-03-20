@@ -13,7 +13,8 @@ class Main extends Component {
   }
 
   state = {
-    repositories: []
+    repositories: [],
+    repositoryError: false
   }
 
   handleAddRepository = async e => {
@@ -27,10 +28,11 @@ class Main extends Component {
       this.inputRef.current.value = ''
 
       this.setState({
-        repositories: [...this.state.repositories, repository]
+        repositories: [...this.state.repositories, repository],
+        repositoryError: false
       })
     } catch (error) {
-      console.log('Erro', error)
+      this.setState({ repositoryError: true })
     }
   }
 
@@ -39,7 +41,10 @@ class Main extends Component {
       <Container>
         <img src={logo} alt='Github compare logo' />
 
-        <Form onSubmit={this.handleAddRepository}>
+        <Form
+          onSubmit={this.handleAddRepository}
+          withError={this.state.repositoryError}
+        >
           <input
             name='repository'
             type='text'
