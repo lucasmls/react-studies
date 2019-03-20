@@ -13,12 +13,14 @@ class Main extends Component {
   }
 
   state = {
+    isLoading: false,
     repositories: [],
     repositoryError: false
   }
 
   handleAddRepository = async e => {
     e.preventDefault()
+    this.setState({ isLoading: true })
     const userAndRepo = e.target.repository.value
 
     try {
@@ -33,6 +35,8 @@ class Main extends Component {
       })
     } catch (error) {
       this.setState({ repositoryError: true })
+    } finally {
+      this.setState({ isLoading: false })
     }
   }
 
@@ -51,7 +55,13 @@ class Main extends Component {
             placeholder='usuário/repositório'
             ref={this.inputRef}
           />
-          <button type='submit'>Ok</button>
+          <button type='submit'>
+            {this.state.isLoading ? (
+              <i className='fa fa-spinner fa-pulse' />
+            ) : (
+              'Buscar'
+            )}
+          </button>
         </Form>
 
         <CompareList repositories={this.state.repositories} />
