@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState, useEffect } from 'react'
 import moment from 'moment'
 
 import CompareList from '../../components/CompareList'
@@ -6,120 +6,93 @@ import { Container, Form } from './styles'
 import logo from '../../assets/logo.png'
 import api from '../../services/api'
 
-class Main extends Component {
-  constructor () {
-    super()
-    this.inputRef = React.createRef()
+function Main () {
+  const [repositories, setRepositories] = useState([])
+  const [searchRepo, setSearchRepo] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [hasError, setHasError] = useState(false)
+
+  function getLocalRepositories () {
+    return JSON.parse(localStorage.getItem('repositories')) || []
   }
 
-  state = {
-    isLoading: false,
-    repositories: [],
-    repositoryError: false
+  function saveLocalRepositories () {
+    localStorage.setItem('repositories', JSON.stringify(repositories))
   }
 
-  saveRepositories = () => {
-    localStorage.setItem(
-      'repositories',
-      JSON.stringify(this.state.repositories)
+  function removeRepository (repoIndex) {
+    setRepositories(
+      repositories.filter((repository, index) => index !== repoIndex)
     )
   }
 
-  removeRepository = repoIndex => {
-    this.setState(
-      {
-        repositories: this.state.repositories.filter(
-          (repository, index) => index !== repoIndex
-        )
-      },
-      () => {
-        this.saveRepositories()
-      }
+  async function updateRepository (repoIndex) {
+    const repository = repositories.find((repo, index) => index === repoIndex)
+
+    const updatedRepository = await fetchRepository(repository.full_name)
+
+    setRepositories(
+      repositories.map((repo, index) =>
+        repoIndex === index ? updatedRepository : repo
+      )
     )
   }
 
-  updateRepository = async repoIndex => {
-    const repository = this.state.repositories.find(
-      (repo, index) => index === repoIndex
-    )
-
-    const updatedRepo = await this.fetchRepository(repository.full_name)
-    this.setState(
-      state => ({
-        repositories: state.repositories.map((repo, index) =>
-          repoIndex === index ? updatedRepo : repo
-        )
-      }),
-      () => this.saveRepositories()
-    )
-  }
-
-  fetchRepository = async userAndRepo => {
+  async function fetchRepository (userAndRepo) {
     const { data: repository } = await api.get(`/repos/${userAndRepo}`)
-
     repository.lastCommit = moment(repository.pushed_at).fromNow()
     return repository
   }
 
-  handleAddRepository = async e => {
+  async function handleSubmit (e) {
     e.preventDefault()
-    this.setState({ isLoading: true })
+    setIsLoading(true)
 
     try {
-      const repository = await this.fetchRepository(e.target.repository.value)
-      this.setState({
-        repositories: [...this.state.repositories, repository],
-        repositoryError: false
-      })
-
-      this.saveRepositories()
+      const repository = await fetchRepository(searchRepo)
+      setRepositories([...repositories, repository])
+      setHasError(false)
     } catch (error) {
-      this.setState({ repositoryError: true })
+      setHasError(true)
     } finally {
-      this.setState({ isLoading: false })
-      this.inputRef.current.value = ''
+      setSearchRepo('')
+      setIsLoading(false)
     }
   }
 
-  componentDidMount = () => {
-    const storageRepos = JSON.parse(localStorage.getItem('repositories'))
-    storageRepos
-      ? this.setState({ repositories: [...storageRepos] })
-      : localStorage.setItem('repositories', JSON.stringify([]))
-  }
+  useEffect(() => {
+    setRepositories(getLocalRepositories())
+  }, [])
 
-  render () {
-    return (
-      <Container>
-        <img src={logo} alt='Github compare logo' />
+  useEffect(() => {
+    saveLocalRepositories()
+  }, [repositories])
 
-        <Form
-          onSubmit={this.handleAddRepository}
-          withError={this.state.repositoryError}
-        >
-          <input
-            name='repository'
-            type='text'
-            placeholder='usuário/repositório'
-            ref={this.inputRef}
-          />
-          <button type='submit'>
-            {this.state.isLoading ? (
-              <i className='fa fa-spinner fa-pulse' />
-            ) : (
-              'Buscar'
-            )}
-          </button>
-        </Form>
+  return (
+    <Container>
+      <img src={logo} alt='Github compare logo' />
 
-        <CompareList
-          repositories={this.state.repositories}
-          removeRepository={this.removeRepository}
-          updateRepository={this.updateRepository}
+      <Form onSubmit={handleSubmit} withError={hasError}>
+        <input
+          name='repository'
+          type='text'
+          placeholder='usuário/repositório'
+          value={searchRepo}
+          onChange={e => setSearchRepo(e.target.value)}
         />
-      </Container>
-    )
-  }
+
+        <button type='submit'>
+          {isLoading ? <i className='fa fa-spinner fa-pulse' /> : 'Buscar'}
+        </button>
+      </Form>
+
+      <CompareList
+        repositories={repositories}
+        removeRepository={removeRepository}
+        updateRepository={updateRepository}
+      />
+    </Container>
+  )
 }
 
 export default Main
