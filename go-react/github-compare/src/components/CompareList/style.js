@@ -18,10 +18,34 @@ export const Repository = styled.div`
   margin: 0 10px;
 
   header {
+    position: relative;
     padding: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    i {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 10px;
+      cursor: pointer;
+      color: #c3c3c3;
+
+      &:hover {
+        color: #ccc;
+      }
+    }
+
+    .remove {
+      right: 10px;
+    }
+
+    .update {
+      left: 10px;
+    }
+
     img {
       width: 64px;
     }

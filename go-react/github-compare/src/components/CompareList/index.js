@@ -3,14 +3,24 @@ import PropTypes from 'prop-types'
 
 import { ListContainer, Repository } from './style'
 
-const CompareList = ({ repositories }) => (
+const CompareList = ({ repositories, removeRepository, updateRepository }) => (
   <ListContainer>
-    {repositories.map(repository => (
+    {repositories.map((repository, index) => (
       <Repository key={repository.id}>
         <header>
           <img src={repository.owner.avatar_url} alt={repository.owner.login} />
           <strong>{repository.name}</strong>
           <small>{repository.owner.login}</small>
+
+          <i
+            onClick={() => updateRepository(index)}
+            className='fa fa-refresh update'
+          />
+
+          <i
+            onClick={() => removeRepository(index)}
+            className='fa fa-times remove'
+          />
         </header>
 
         <ul>
@@ -46,7 +56,9 @@ CompareList.propTypes = {
       open_issues_count: PropTypes.number,
       lastCommit: PropTypes.string
     })
-  ).isRequired
+  ).isRequired,
+  removeRepository: PropTypes.func,
+  updateRepository: PropTypes.func
 }
 
 export default CompareList

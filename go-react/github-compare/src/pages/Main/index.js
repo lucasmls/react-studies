@@ -18,32 +18,66 @@ class Main extends Component {
     repositoryError: false
   }
 
-  saveRepository = repository => {
-    const repositories = JSON.parse(localStorage.getItem('repositories'))
-    const updatedRepositories = [...repositories, repository]
-    localStorage.setItem('repositories', JSON.stringify(updatedRepositories))
+  saveRepositories = () => {
+    localStorage.setItem(
+      'repositories',
+      JSON.stringify(this.state.repositories)
+    )
+  }
+
+  removeRepository = repoIndex => {
+    this.setState(
+      {
+        repositories: this.state.repositories.filter(
+          (repository, index) => index !== repoIndex
+        )
+      },
+      () => {
+        this.saveRepositories()
+      }
+    )
+  }
+
+  updateRepository = async repoIndex => {
+    const repository = this.state.repositories.find(
+      (repo, index) => index === repoIndex
+    )
+
+    const updatedRepo = await this.fetchRepository(repository.full_name)
+    this.setState(
+      state => ({
+        repositories: state.repositories.map((repo, index) =>
+          repoIndex === index ? updatedRepo : repo
+        )
+      }),
+      () => this.saveRepositories()
+    )
+  }
+
+  fetchRepository = async userAndRepo => {
+    const { data: repository } = await api.get(`/repos/${userAndRepo}`)
+
+    repository.lastCommit = moment(repository.pushed_at).fromNow()
+    return repository
   }
 
   handleAddRepository = async e => {
     e.preventDefault()
     this.setState({ isLoading: true })
-    const userAndRepo = e.target.repository.value
 
     try {
-      const { data: repository } = await api.get(`/repos/${userAndRepo}`)
-
-      repository.lastCommit = moment(repository.pushed_at).fromNow()
-      this.inputRef.current.value = ''
+      const repository = await this.fetchRepository(e.target.repository.value)
       this.setState({
         repositories: [...this.state.repositories, repository],
         repositoryError: false
       })
 
-      this.saveRepository(repository)
+      this.saveRepositories()
     } catch (error) {
       this.setState({ repositoryError: true })
     } finally {
       this.setState({ isLoading: false })
+      this.inputRef.current.value = ''
     }
   }
 
@@ -78,7 +112,11 @@ class Main extends Component {
           </button>
         </Form>
 
-        <CompareList repositories={this.state.repositories} />
+        <CompareList
+          repositories={this.state.repositories}
+          removeRepository={this.removeRepository}
+          updateRepository={this.updateRepository}
+        />
       </Container>
     )
   }
