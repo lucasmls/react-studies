@@ -1,13 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Map from './components/Map'
 
-class App extends Component {
-  render () {
-    return (
-      <div className='App'>
-        <h1>Github map marker</h1>
-      </div>
-    )
-  }
-}
+const App = () => <Map />
 
 export default App
