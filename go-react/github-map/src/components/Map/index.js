@@ -36,7 +36,6 @@ class Map extends Component {
   }
 
   handleMapClick (e) {
-    console.log(e)
     const [latitude, longitude] = e.lngLat
 
     alert(`Latitude: ${latitude} \nLongitude: ${longitude}`)
