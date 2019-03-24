@@ -1,20 +1,20 @@
 import React, { Fragment } from 'react'
 import ReactModal from 'react-modal'
 
-import { ModalStyle, ModalTitle, RepositoryForm, ModalButton } from './styles'
+import { ModalStyle, ModalTitle, UserForm, ModalButton } from './styles'
 
-const RepositoryModal = () => (
+const UserModal = () => (
   <Fragment>
     <ModalStyle />
     <ReactModal
       isOpen
-      className='repository-modal'
-      overlayClassName='repository-modal__overlay'
+      className='user-modal'
+      overlayClassName='user-modal__overlay'
       ariaHideApp={false}
     >
       <div>
         <ModalTitle>Adicionar novo usuário</ModalTitle>
-        <RepositoryForm>
+        <UserForm>
           <input type='text' placeholder='Usuário no Github' />
 
           <div className='actions'>
@@ -23,10 +23,10 @@ const RepositoryModal = () => (
               Salvar
             </ModalButton>
           </div>
-        </RepositoryForm>
+        </UserForm>
       </div>
     </ReactModal>
   </Fragment>
 )
 
-export default RepositoryModal
+export default UserModal

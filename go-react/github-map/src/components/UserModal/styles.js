@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from 'styled-components'
 
 export const ModalStyle = createGlobalStyle`
-  .repository-modal {
+  .user-modal {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,7 +31,7 @@ export const ModalTitle = styled.h5`
   font-weight: bold;
 `
 
-export const RepositoryForm = styled.form`
+export const UserForm = styled.form`
   display: flex;
   flex-direction: column;
 

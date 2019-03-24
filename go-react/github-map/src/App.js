@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Map from './components/Map'
 import UsersList from './components/UsersList'
-import RepositoryModal from './components/RepositoryModal'
+import UserModal from './components/UserModal'
 import GlobalStyle from './styles/globals'
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
       <GlobalStyle />
       <Map />
       <UsersList />
-      <RepositoryModal />
+      <UserModal />
     </Fragment>
   )
 }
