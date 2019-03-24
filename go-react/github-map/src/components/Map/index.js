@@ -1,22 +1,32 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import MapGL, { Marker } from 'react-map-gl'
+import { connect } from 'react-redux'
 import Pin from '../Pin'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 class Map extends Component {
+  static propTypes = {
+    users: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        avatar_url: PropTypes.string,
+        login: PropTypes.string,
+        url: PropTypes.string,
+        latitude: PropTypes.number,
+        longitude: PropTypes.number
+      })
+    )
+  }
+
   state = {
-    isOpen: false,
     viewport: {
       width: window.innerWidth,
       height: window.innerHeight,
       latitude: -19.9651161,
       longitude: -43.9838844,
       zoom: 14
-    },
-    marker: {
-      latitude: -19.9651161,
-      longitude: -43.9838844
     }
   }
 
@@ -54,16 +64,23 @@ class Map extends Component {
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleMapClick}
         >
-          <Marker
-            latitude={this.state.marker.latitude}
-            longitude={this.state.marker.longitude}
-          >
-            <Pin size={48} />
-          </Marker>
+          {this.props.users.map(user => (
+            <Marker
+              key={user.login}
+              latitude={user.latitude}
+              longitude={user.longitude}
+            >
+              <Pin size={48} avatar={user.avatar_url} />
+            </Marker>
+          ))}
         </MapGL>
       </div>
     )
   }
 }
 
-export default Map
+const mapStateToProps = state => ({
+  users: state.users.data
+})
+
+export default connect(mapStateToProps)(Map)

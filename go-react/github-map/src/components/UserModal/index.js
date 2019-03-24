@@ -7,7 +7,7 @@ const UserModal = () => (
   <Fragment>
     <ModalStyle />
     <ReactModal
-      isOpen
+      isOpen={false}
       className='user-modal'
       overlayClassName='user-modal__overlay'
       ariaHideApp={false}

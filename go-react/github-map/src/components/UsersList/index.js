@@ -1,16 +1,35 @@
 import React from 'react'
-import User from '../User'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
+import User from '../User'
 import { List } from './styles'
 
-const UsersList = () => (
+const UsersList = ({ users }) => (
   <List>
-    {Array.from({ length: 5 }).map(user => (
-      <li>
-        <User />
+    {users.map(user => (
+      <li key={user.login}>
+        <User user={user} />
       </li>
     ))}
   </List>
 )
 
-export default UsersList
+UsersList.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      avatar_url: PropTypes.string,
+      login: PropTypes.string,
+      url: PropTypes.string,
+      latitude: PropTypes.number,
+      longitude: PropTypes.number
+    })
+  )
+}
+
+const mapStateToProps = state => ({
+  users: state.users.data
+})
+
+export default connect(mapStateToProps)(UsersList)

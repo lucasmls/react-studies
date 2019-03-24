@@ -1,22 +1,41 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { FaTimes, FaChevronRight } from 'react-icons/fa'
 import { UserContainer, UserInfo, UserActions } from './styles'
 
-const User = () => (
+const User = ({ user }) => (
   <UserContainer>
-    <img
-      src='https://avatars1.githubusercontent.com/u/20602256?s=460&v=4'
-      alt=''
-    />
+    <a href={user.url} target='blank'>
+      <img src={user.avatar_url} alt='' />
+    </a>
     <UserInfo>
-      <h4>Lucas Mendes</h4>
-      <span>lucasmls</span>
+      <a href={user.url} target='blank'>
+        <h4>{user.name}</h4>
+      </a>
+      <span>{user.login}</span>
     </UserInfo>
     <UserActions>
       <FaTimes className='icon close' />
-      <FaChevronRight className='icon open' />
+      <a
+        href={user.url}
+        target='blank'
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        <FaChevronRight className='icon open' />
+      </a>
     </UserActions>
   </UserContainer>
 )
+
+User.propTypes = {
+  user: PropTypes.shape({
+    name: PropTypes.string,
+    avatar_url: PropTypes.string,
+    login: PropTypes.string,
+    url: PropTypes.string,
+    latitude: PropTypes.number,
+    longitude: PropTypes.number
+  })
+}
 
 export default User

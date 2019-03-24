@@ -12,6 +12,10 @@ export const UserContainer = styled.div`
     height: 50px;
     border-radius: 50%;
   }
+
+  a {
+    text-decoration: none;
+  }
 `
 
 export const UserInfo = styled.div`
