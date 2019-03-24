@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import MapGL from 'react-map-gl'
+import MapGL, { Marker } from 'react-map-gl'
+import Pin from '../Pin'
 
 class Map extends Component {
   state = {
@@ -9,6 +10,10 @@ class Map extends Component {
       latitude: -19.9651161,
       longitude: -43.9838844,
       zoom: 14
+    },
+    marker: {
+      latitude: -19.9651161,
+      longitude: -43.9838844
     }
   }
 
@@ -30,6 +35,13 @@ class Map extends Component {
     })
   }
 
+  handleMapClick (e) {
+    console.log(e)
+    const [latitude, longitude] = e.lngLat
+
+    alert(`Latitude: ${latitude} \nLongitude: ${longitude}`)
+  }
+
   render () {
     return (
       <div>
@@ -38,7 +50,15 @@ class Map extends Component {
           mapStyle='mapbox://styles/mapbox/basic-v9'
           mapboxApiAccessToken={process.env.REACT_APP_MAP_KEY}
           onViewportChange={viewport => this.setState({ viewport })}
-        />
+          onClick={this.handleMapClick}
+        >
+          <Marker
+            latitude={this.state.marker.latitude}
+            longitude={this.state.marker.longitude}
+          >
+            <Pin size={48} />
+          </Marker>
+        </MapGL>
       </div>
     )
   }
