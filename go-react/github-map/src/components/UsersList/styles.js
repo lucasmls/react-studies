@@ -4,7 +4,7 @@ export const List = styled.ul`
   position: absolute;
   top: 20px;
   left: 25px;
-  z-index: 10;
+  z-index: 1;
   background-color: #fff;
   cursor: default;
 

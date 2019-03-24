@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import MapGL, { Marker } from 'react-map-gl'
 import Pin from '../Pin'
 
+import 'mapbox-gl/dist/mapbox-gl.css'
+
 class Map extends Component {
   state = {
+    isOpen: false,
     viewport: {
       width: window.innerWidth,
       height: window.innerHeight,
@@ -35,10 +38,10 @@ class Map extends Component {
     })
   }
 
-  handleMapClick (e) {
+  handleMapClick = e => {
     const [latitude, longitude] = e.lngLat
 
-    alert(`Latitude: ${latitude} \nLongitude: ${longitude}`)
+    console.log(`Latitude: ${latitude} \nLongitude: ${longitude}`)
   }
 
   render () {

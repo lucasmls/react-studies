@@ -8,6 +8,7 @@
     "react-dom": "^16.8.5",
     "react-icons": "^3.5.0",
     "react-map-gl": "^4.1.1",
+    "react-modal": "^3.8.1",
     "react-scripts": "2.1.8",
     "styled-components": "^4.2.0"
   },

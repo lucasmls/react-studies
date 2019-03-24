@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialised !important;
     font-family: sans-serif;
   }
+
 `
 
 export default GlobalStyle
