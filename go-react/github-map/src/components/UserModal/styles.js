@@ -21,6 +21,20 @@ export const ModalStyle = createGlobalStyle`
       background-color: rgba(0, 0, 0, .5);
       z-index: 3;
     }
+
+    .rotate {
+      animation: rotation 2s infinite linear;
+    }
+
+    @keyframes rotation {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
   }
 `
 

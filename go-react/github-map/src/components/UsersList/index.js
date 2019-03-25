@@ -6,13 +6,17 @@ import User from '../User'
 import { List } from './styles'
 
 const UsersList = ({ users }) => (
-  <List>
-    {users.map(user => (
-      <li key={user.login}>
-        <User user={user} />
-      </li>
-    ))}
-  </List>
+  <>
+    {users.length && (
+      <List className='fade-in-left'>
+        {users.map(user => (
+          <li key={user.login}>
+            <User user={user} />
+          </li>
+        ))}
+      </List>
+    )}
+  </>
 )
 
 UsersList.propTypes = {

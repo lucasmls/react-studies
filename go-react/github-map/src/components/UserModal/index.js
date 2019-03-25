@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import ReactModal from 'react-modal'
 import PropTypes from 'prop-types'
+import { FaSpinner as LoadingSpin } from 'react-icons/fa'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -8,7 +9,7 @@ import { ModalStyle, ModalTitle, UserForm, ModalButton } from './styles'
 import { Creators as ModalActions } from '../../store/ducks/modal'
 import { Creators as UsersActions } from '../../store/ducks/users'
 
-function UserModal ({ modal, closeUserModal, fetchUser }) {
+function UserModal ({ modal, closeUserModal, fetchUser, isLoading }) {
   function handleSubmit (e) {
     e.preventDefault()
     const username = e.target.user.value
@@ -21,7 +22,7 @@ function UserModal ({ modal, closeUserModal, fetchUser }) {
       <ReactModal
         isOpen={modal.isOpened}
         onRequestClose={closeUserModal}
-        className='user-modal'
+        className='user-modal fade-in-bottom'
         overlayClassName='user-modal__overlay'
         ariaHideApp={false}
       >
@@ -35,7 +36,7 @@ function UserModal ({ modal, closeUserModal, fetchUser }) {
                 Cancelar
               </ModalButton>
               <ModalButton backgroundColor='rgb(150, 200, 131)' type='submit'>
-                Salvar
+                {isLoading ? <LoadingSpin className='rotate' /> : 'Salvar'}
               </ModalButton>
             </div>
           </UserForm>
@@ -54,11 +55,13 @@ UserModal.propTypes = {
     })
   }),
   closeUserModal: PropTypes.func,
-  fetchUser: PropTypes.func
+  fetchUser: PropTypes.func,
+  isLoading: PropTypes.bool
 }
 
 const mapStateToProps = state => ({
-  modal: state.modal
+  modal: state.modal,
+  isLoading: state.users.isLoading
 })
 
 const mapDispatchToProps = dispatch =>
