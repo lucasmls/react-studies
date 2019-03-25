@@ -22,7 +22,7 @@ export const Creators = {
   }),
 
   fetchUserFailure: error => ({
-    type: Types.FETCH_USER_SUCCESS,
+    type: Types.FETCH_USER_FAILURE,
     payload: { error }
   })
 }
