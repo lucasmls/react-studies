@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import MapGL, { Marker } from 'react-map-gl'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import Pin from '../Pin'
-
 import 'mapbox-gl/dist/mapbox-gl.css'
+
+import MapGL, { Marker } from 'react-map-gl'
+import Pin from '../Pin'
+import { Creators as ModalActions } from '../../store/ducks/modal'
 
 class Map extends Component {
   static propTypes = {
+    openUserModal: PropTypes.func,
     users: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -49,9 +52,8 @@ class Map extends Component {
   }
 
   handleMapClick = e => {
-    const [latitude, longitude] = e.lngLat
-
-    console.log(`Latitude: ${latitude} \nLongitude: ${longitude}`)
+    const [longitude, latitude] = e.lngLat
+    this.props.openUserModal({ latitude, longitude })
   }
 
   render () {
@@ -64,6 +66,7 @@ class Map extends Component {
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleMapClick}
         >
+          {console.log('Dentro do mapa', this.props.users)}
           {this.props.users.map(user => (
             <Marker
               key={user.login}
@@ -83,4 +86,10 @@ const mapStateToProps = state => ({
   users: state.users.data
 })
 
-export default connect(mapStateToProps)(Map)
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(ModalActions, dispatch)
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Map)

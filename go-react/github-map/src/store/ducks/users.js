@@ -1,41 +1,56 @@
 /**
  * Types
  */
-export const Types = {}
+export const Types = {
+  FETCH_USER: 'users/FETCH_USER',
+  FETCH_USER_SUCCESS: 'users/FETCH_USER_SUCCESS',
+  FETCH_USER_FAILURE: 'users/FETCH_USER_FAILURE'
+}
 
 /**
  * Actions
  */
-export const Creators = {}
+export const Creators = {
+  fetchUser: payload => ({
+    type: Types.FETCH_USER,
+    payload
+  }),
+
+  fetchUserSuccess: user => ({
+    type: Types.FETCH_USER_SUCCESS,
+    payload: { user }
+  }),
+
+  fetchUserFailure: error => ({
+    type: Types.FETCH_USER_SUCCESS,
+    payload: { error }
+  })
+}
 
 /**
  * Reducer
  */
 const INITIAL_STATE = {
-  data: [
-    {
-      name: 'Lucas Mendes',
-      avatar_url: 'https://avatars3.githubusercontent.com/u/20602256?v=4',
-      login: 'lucasmls',
-      url: 'https://github.com/lucasmls',
-      latitude: -19.9651161,
-      longitude: -43.9838844
-    },
-    {
-      name: 'Daniel Lima',
-      avatar_url: 'https://avatars0.githubusercontent.com/u/19600836?v=4',
-      login: 'danilsbh',
-      url: 'https://github.com/danilsbh',
-      latitude: -19.9616492,
-      longitude: -43.9910895
-    }
-  ]
+  isLoading: false,
+  error: '',
+  data: []
 }
 
 export default function users (state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'TEST':
-      return state
+    case Types.FETCH_USER:
+      return { ...state, isLoading: true }
+
+    case Types.FETCH_USER_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: '',
+        data: [...state.data, action.payload.user]
+      }
+
+    case Types.FETCH_USER_FAILURE:
+      return { ...state, isLoading: false, error: action.payload.error }
 
     default:
       return state
