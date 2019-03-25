@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 
 import api from '../../services/api'
 import { Creators as UsersCreators } from '../ducks/users'
+import { Creators as ModalCreators } from '../ducks/modal'
 
 export function * fetchUser (action) {
   try {
@@ -17,6 +18,7 @@ export function * fetchUser (action) {
     }
 
     yield put(UsersCreators.fetchUserSuccess(user))
+    yield put(ModalCreators.closeUserModal())
 
     toast.success('Usuário Adicionado com sucesso!', {
       position: toast.POSITION.TOP_RIGHT
