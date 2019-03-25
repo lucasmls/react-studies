@@ -32,6 +32,7 @@ const User = ({ user, removeUser }) => (
 )
 
 User.propTypes = {
+  removeUser: PropTypes.func,
   user: PropTypes.shape({
     name: PropTypes.string,
     avatar_url: PropTypes.string,
