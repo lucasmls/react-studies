@@ -4,7 +4,8 @@
 export const Types = {
   FETCH_USER: 'users/FETCH_USER',
   FETCH_USER_SUCCESS: 'users/FETCH_USER_SUCCESS',
-  FETCH_USER_FAILURE: 'users/FETCH_USER_FAILURE'
+  FETCH_USER_FAILURE: 'users/FETCH_USER_FAILURE',
+  REMOVE_USER: 'users/REMOVE_USER'
 }
 
 /**
@@ -24,6 +25,11 @@ export const Creators = {
   fetchUserFailure: error => ({
     type: Types.FETCH_USER_FAILURE,
     payload: { error }
+  }),
+
+  removeUser: username => ({
+    type: Types.REMOVE_USER,
+    payload: { username }
   })
 }
 
@@ -51,6 +57,12 @@ export default function users (state = INITIAL_STATE, action) {
 
     case Types.FETCH_USER_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error }
+
+    case Types.REMOVE_USER:
+      return {
+        ...state,
+        data: state.data.filter(user => user.login !== action.payload.username)
+      }
 
     default:
       return state

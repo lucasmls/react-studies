@@ -1,9 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FaTimes, FaChevronRight } from 'react-icons/fa'
-import { UserContainer, UserInfo, UserActions } from './styles'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-const User = ({ user }) => (
+import { UserContainer, UserInfo, UserActions } from './styles'
+import { Creators as UsersActions } from '../../store/ducks/users'
+
+const User = ({ user, removeUser }) => (
   <UserContainer>
     <a href={user.url} target='blank'>
       <img src={user.avatar_url} alt='' />
@@ -15,7 +19,7 @@ const User = ({ user }) => (
       <span>{user.login}</span>
     </UserInfo>
     <UserActions>
-      <FaTimes className='icon close' />
+      <FaTimes className='icon close' onClick={() => removeUser(user.login)} />
       <a
         href={user.url}
         target='blank'
@@ -38,4 +42,10 @@ User.propTypes = {
   })
 }
 
-export default User
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(UsersActions, dispatch)
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(User)

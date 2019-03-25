@@ -7,6 +7,7 @@ export const List = styled.ul`
   z-index: 1;
   background-color: #fff;
   cursor: default;
+  overflow-y: scroll;
 
   list-style: none;
   border-radius: 3px;

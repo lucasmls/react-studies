@@ -66,7 +66,6 @@ class Map extends Component {
           onViewportChange={viewport => this.setState({ viewport })}
           onClick={this.handleMapClick}
         >
-          {console.log('Dentro do mapa', this.props.users)}
           {this.props.users.map(user => (
             <Marker
               key={user.login}
