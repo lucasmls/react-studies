@@ -12,14 +12,18 @@ const GlobalStyle = createGlobalStyle`
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialised !important;
     -webkit-font-smoothing: antialiased;
-    font-family: sans-serif;
-    font-family: Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #FADE6F;
+    background-color: #181818;
+  }
+
+  html, body, #root {
+    height: 100%;
   }
 `
 
