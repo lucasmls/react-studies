@@ -15,10 +15,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Montserrat', sans-serif;
     color: #fff;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     background-color: #181818;
   }
 
