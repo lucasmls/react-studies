@@ -1,10 +1,18 @@
 import React from "react";
+
+/**
+ * Components
+ */
 import Navbar from "./components/Navbar";
 import Booklist from "./components/Booklist";
 import ThemeToggle from "./components/ThemeToggle";
 
-import ThemeContextProvider from "./contexts/ThemeContext";
+/**
+ * Context's providers
+ */
 import AuthContextProvider from "./contexts/AuthContext";
+import ThemeContextProvider from "./contexts/ThemeContext";
+import BooksContextProvider from "./contexts/BooksContext";
 
 function App() {
   return (
@@ -12,7 +20,11 @@ function App() {
       <AuthContextProvider>
         <ThemeContextProvider>
           <Navbar />
-          <Booklist />
+
+          <BooksContextProvider>
+            <Booklist />
+          </BooksContextProvider>
+
           <ThemeToggle />
         </ThemeContextProvider>
       </AuthContextProvider>
