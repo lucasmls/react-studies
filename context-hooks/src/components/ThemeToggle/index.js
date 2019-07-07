@@ -1,12 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ThemeContext } from "../../contexts/ThemeContext";
 
 export default function ThemeToggle() {
-  return (
-    <ThemeContext.Consumer>
-      {context => (
-        <button onClick={context.toggleTheme}>Toggle the theme</button>
-      )}
-    </ThemeContext.Consumer>
-  );
+  const { toggleTheme } = useContext(ThemeContext);
+
+  return <button onClick={toggleTheme}>Toggle the theme</button>;
 }
