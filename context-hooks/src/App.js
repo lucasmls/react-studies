@@ -1,9 +1,12 @@
 import React from "react";
+import Navbar from "./components/Navbar";
+import Booklist from "./components/Booklist";
 
 function App() {
   return (
     <div className="App">
-      <p>Lorem ipsum dolor sit.</p>
+      <Navbar />
+      <Booklist />
     </div>
   );
 }
