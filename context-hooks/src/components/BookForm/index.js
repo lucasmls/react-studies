@@ -3,11 +3,15 @@ import { formToJSON } from "../../utils/formToJSON";
 import { BooksContext } from "../../contexts/BooksContext";
 
 export default function BookForm() {
-  const { addBook } = useContext(BooksContext);
+  const { dispatch } = useContext(BooksContext);
 
   const handleSubmit = e => {
     e.preventDefault();
-    addBook(formToJSON(e.target.elements));
+
+    dispatch({
+      type: "ADD_BOOK",
+      payload: formToJSON(e.target.elements)
+    });
 
     // @TODO => Clean up the inputs after submit
   };
