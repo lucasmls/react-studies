@@ -19,13 +19,13 @@ function App() {
     <div className="App">
       <AuthContextProvider>
         <ThemeContextProvider>
-          <Navbar />
-
           <BooksContextProvider>
-            <Booklist />
-          </BooksContextProvider>
+            <Navbar />
 
-          <ThemeToggle />
+            <Booklist />
+
+            <ThemeToggle />
+          </BooksContextProvider>
         </ThemeContextProvider>
       </AuthContextProvider>
     </div>

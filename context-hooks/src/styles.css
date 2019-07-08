@@ -23,6 +23,11 @@ nav ul li {
   display: inline-block;
   margin: 0 10px;
 }
+.book:hover {
+  text-decoration: line-through;
+  cursor: pointer;
+  opacity: 0.8;
+}
 .book-list {
   padding: 20px;
   margin-bottom: 20px;
