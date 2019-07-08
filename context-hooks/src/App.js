@@ -4,6 +4,7 @@ import React from "react";
  * Components
  */
 import Navbar from "./components/Navbar";
+import BookForm from "./components/BookForm";
 import Booklist from "./components/Booklist";
 import ThemeToggle from "./components/ThemeToggle";
 
@@ -21,9 +22,8 @@ function App() {
         <ThemeContextProvider>
           <BooksContextProvider>
             <Navbar />
-
             <Booklist />
-
+            <BookForm />
             <ThemeToggle />
           </BooksContextProvider>
         </ThemeContextProvider>
