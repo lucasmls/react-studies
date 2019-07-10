@@ -1,9 +1,10 @@
 import React from "react";
+import Box from "./components/Box";
 
 function App() {
   return (
     <div className="App">
-      <h2>Hello framer-motion!</h2>
+      <Box />
     </div>
   );
 }
