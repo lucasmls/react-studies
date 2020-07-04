@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src --max-warnings=0",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },
   "husky": {
@@ -48,6 +48,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
+    "jest-styled-components": "^7.0.2",
     "lint-staged": "^10.2.11",
     "typescript": "^3.9.6"
   }
